@@ -107,5 +107,5 @@ class Ui_MainWindow(object):
         item = self.tableWidget.item(1, 1)
         item.setText(_translate("MainWindow", "1.00"))
         self.tableWidget.setSortingEnabled(__sortingEnabled)
-        self.algorythm_label.setText(_translate("MainWindow", "<html><head/><body><p>Алгоритм:</p><p>1. Выбрать количество критериев</p><p>2. Обозначить названия критериев по колонкам и столбцам</p><p>3. Заполнить правый треугольник таблицы значениями</p><p>4. Нажать кнопку результат</p><p>Если возникли вопросы вызовите Help.</p></body></html>"))
+        self.algorythm_label.setText(_translate("MainWindow", "<html><head/><body><p>Алгоритм:</p><p>1. Выбрать количество критериев</p><p>2. Обозначить названия критериев по колонкам или столбцам</p><p>3. Заполнить правый треугольник таблицы значениями</p><p>4. Нажать кнопку результат</p><p>Если возникли вопросы вызовите Help.</p></body></html>"))
         self.menuHelp.setTitle(_translate("MainWindow", "Help"))

@@ -122,7 +122,7 @@
      <item alignment="Qt::AlignHCenter|Qt::AlignTop">
       <widget class="QLabel" name="algorythm_label">
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Алгоритм:&lt;/p&gt;&lt;p&gt;1. Выбрать количество критериев&lt;/p&gt;&lt;p&gt;2. Обозначить названия критериев по колонкам и столбцам&lt;/p&gt;&lt;p&gt;3. Заполнить правый треугольник таблицы значениями&lt;/p&gt;&lt;p&gt;4. Нажать кнопку результат&lt;/p&gt;&lt;p&gt;Если возникли вопросы вызовите Help.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Алгоритм:&lt;/p&gt;&lt;p&gt;1. Выбрать количество критериев&lt;/p&gt;&lt;p&gt;2. Обозначить названия критериев по колонкам или столбцам&lt;/p&gt;&lt;p&gt;3. Заполнить правый треугольник таблицы значениями&lt;/p&gt;&lt;p&gt;4. Нажать кнопку результат&lt;/p&gt;&lt;p&gt;Если возникли вопросы вызовите Help.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="wordWrap">
         <bool>true</bool>

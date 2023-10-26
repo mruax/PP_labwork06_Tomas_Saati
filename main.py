@@ -16,11 +16,6 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        self.ui.tableWidget.setHorizontalHeaderItem(0, QTableWidgetItem("Заголовок 1"))
-        self.ui.tableWidget.setHorizontalHeaderItem(1, QTableWidgetItem("Заголовок 2"))
-        self.ui.tableWidget.setVerticalHeaderItem(0, QTableWidgetItem("Ряд 1"))
-        self.ui.tableWidget.setVerticalHeaderItem(1, QTableWidgetItem("Ряд 2"))
-
         self.ui.tableWidget.horizontalHeader().setSectionsClickable(True)
         self.ui.tableWidget.verticalHeader().setSectionsClickable(True)
 
@@ -35,8 +30,11 @@ class MainWindow(QMainWindow):
 
     def editColumnHeader(self, logicalIndex):
         item = self.ui.tableWidget.horizontalHeaderItem(logicalIndex)
+        n = self.ui.tableWidget.columnCount()
+        if logicalIndex == n - 1:
+            return
         if item:
-            oldHeaders = [self.ui.tableWidget.horizontalHeaderItem(i).text() for i in range(self.ui.tableWidget.columnCount())]
+            oldHeaders = [self.ui.tableWidget.horizontalHeaderItem(i).text() for i in range(n)]
             newHeader, ok = QInputDialog.getText(self, 'Изменение данных', 'Название критерия:')
             if ok:
                 oldHeaders[logicalIndex] = newHeader
@@ -44,14 +42,16 @@ class MainWindow(QMainWindow):
 
     def editRowHeader(self, logicalIndex):
         item = self.ui.tableWidget.verticalHeaderItem(logicalIndex)
+        n = self.ui.tableWidget.rowCount()
+        if logicalIndex == n - 1:
+            return
         if item:
             oldHeaders = [self.ui.tableWidget.verticalHeaderItem(i).text() for i in
-                          range(self.ui.tableWidget.rowCount())]
+                          range(n)]
             newHeader, ok = QInputDialog.getText(self, 'Изменение данных', 'Название критерия:')
             if ok:
                 oldHeaders[logicalIndex] = newHeader
                 self.ui.tableWidget.setVerticalHeaderLabels(oldHeaders)
-
 
     def result(self):
         print("Нажал кнопку!")
