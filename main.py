@@ -10,7 +10,13 @@ from generated_ui import Ui_MainWindow
 
 
 class MainWindow(QMainWindow):
+    """
+    Главное окно приложения.
+    """
     def __init__(self):
+        """
+        Инициализация интерфейса с подключением сгенерированного ui из QtDesigner
+        """
         super().__init__()
 
         self.ui = Ui_MainWindow()
@@ -18,10 +24,8 @@ class MainWindow(QMainWindow):
 
         self.ui.tableWidget.horizontalHeader().setSectionsClickable(True)
         self.ui.tableWidget.verticalHeader().setSectionsClickable(True)
-
         self.ui.tableWidget.horizontalHeader().setSectionsMovable(False)
         self.ui.tableWidget.verticalHeader().setSectionsMovable(False)
-
         self.ui.tableWidget.horizontalHeader().sectionDoubleClicked.connect(self.editHeader)
         self.ui.tableWidget.verticalHeader().sectionDoubleClicked.connect(self.editHeader)
 
@@ -32,8 +36,14 @@ class MainWindow(QMainWindow):
         self.amount = self.ui.criteriaAmount.value()
 
     def editHeader(self, logicalIndex):
+        """
+        Редактирует название критериев в таблице
+
+        :param logicalIndex: индекс столбца/строки
+        :return: None
+        """
         n = self.ui.tableWidget.rowCount()
-        if logicalIndex == n - 1:
+        if logicalIndex == n - 1:  # Строку и столбец с суммой нельзя редактировать
             return
         oldHeaders = [self.ui.tableWidget.verticalHeaderItem(i).text() for i in range(n)]
         oldHeaders2 = [self.ui.tableWidget.horizontalHeaderItem(i).text() for i in range(n)]
@@ -45,9 +55,15 @@ class MainWindow(QMainWindow):
             self.ui.tableWidget.setHorizontalHeaderLabels(oldHeaders2)
 
     def result(self):
+        # TODO: Доделать реализацию Томаса Саати
         print("Нажал кнопку!")
 
     def nulify_cells(self):
+        """
+        Обнуляет значения ячеек
+
+        :return: None
+        """
         for row in range(self.ui.tableWidget.rowCount()):
             for col in range(self.ui.tableWidget.columnCount()):
                 item = self.ui.tableWidget.item(row, col)
@@ -55,6 +71,11 @@ class MainWindow(QMainWindow):
                     item.setText("")
 
     def change_headers(self):
+        """
+        Автоматически изменяет названия критериев, а также столбец и строку с суммой
+
+        :return: None
+        """
         n = self.ui.tableWidget.columnCount()
         headers = [self.ui.tableWidget.verticalHeaderItem(i).text() for i in range(n)]
         headers[n - 2] = f"Критерий {n - 1}"
@@ -67,8 +88,13 @@ class MainWindow(QMainWindow):
         self.ui.tableWidget.setHorizontalHeaderLabels(headers)
 
     def changeAmount(self):
+        """
+        Добавляет или убавляет строчку/строку
+
+        :return: None
+        """
         n = self.ui.criteriaAmount.value()
-        if self.amount < n:
+        if self.amount < n:  # Добавление нового критерия
             self.ui.tableWidget.insertRow(n)
             self.ui.tableWidget.insertColumn(n)
 
@@ -79,19 +105,20 @@ class MainWindow(QMainWindow):
 
             self.ui.tableWidget.setColumnCount(n + 1)
             self.ui.tableWidget.setRowCount(n + 1)
-        else:
+        else:  # Удаление нового критерия
             self.ui.tableWidget.removeRow(n)
             self.ui.tableWidget.removeColumn(n)
             self.ui.tableWidget.setColumnCount(n + 1)
             self.ui.tableWidget.setRowCount(n + 1)
-        self.nulify_cells()
+        self.nulify_cells()  # Обнуляем сетку значений
         self.amount = self.ui.criteriaAmount.value()
-        self.change_headers()
+        self.change_headers()  # Обновляем заголовки критериев
 
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = MainWindow()
+    # выполняется в случае, когда файл является entry point и запускается как самостоятельное приложение.
+    app = QApplication(sys.argv)  # экземпляр QApplication, который управляет приложением PyQt.
+    window = MainWindow()  # экземпляр главного окна, отображаемого в приложении.
 
-    window.show()
-    sys.exit(app.exec())
+    window.show()  # отображаем главное окно.
+    sys.exit(app.exec())  # цикл событий приложения, ожидающий события и взаимодействие пользователя
