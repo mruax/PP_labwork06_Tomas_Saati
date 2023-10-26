@@ -28,6 +28,8 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Tomas Saati")
         self.ui.result_button.clicked.connect(self.result)
 
+        self.ui.criteriaAmount.valueChanged.connect(self.changeAmount)
+
     def editColumnHeader(self, logicalIndex):
         item = self.ui.tableWidget.horizontalHeaderItem(logicalIndex)
         n = self.ui.tableWidget.columnCount()
@@ -55,6 +57,25 @@ class MainWindow(QMainWindow):
 
     def result(self):
         print("Нажал кнопку!")
+
+    def nulify_cells(self):
+        for row in range(self.ui.tableWidget.rowCount()):
+            for col in range(self.ui.tableWidget.columnCount()):
+                item = self.ui.tableWidget.item(row, col)
+                if item is not None:
+                    item.setText("")
+
+    def changeAmount(self):
+        # self.ui.tableWidget.setColumnCount(self.ui.tableWidget.columnCount() + 1)
+        # self.ui.tableWidget.setRowCount(self.ui.tableWidget.rowCount() + 1)
+        # row_position = self.ui.tableWidget.rowCount() - 1
+        # column_position = self.ui.tableWidget.columnCount() - 1
+        # self.ui.tableWidget.insertRow(row_position)
+        # self.ui.tableWidget.insertColumn(column_position)
+        n = self.ui.criteriaAmount.value()
+        self.ui.tableWidget.setRowCount(n + 1)
+        self.ui.tableWidget.setColumnCount(n + 1)
+        self.nulify_cells()
 
 
 if __name__ == "__main__":
