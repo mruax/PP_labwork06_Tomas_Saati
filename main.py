@@ -106,6 +106,7 @@ class MainWindow(QMainWindow):
                     b = decimize(str(1 / Decimal(a_i)))
                 except Exception:
                     message_box = QMessageBox()
+                    message_box.setWindowTitle("Ошибка!")
                     message_box.setText(f"В данных есть ошибка (или значение одной из ячеек ноль)! "
                                         f"Пожалуйста исправьте значение ({j + 1}, {i + 1})!")
                     message_box.exec()
