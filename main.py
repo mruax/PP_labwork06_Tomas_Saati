@@ -29,7 +29,7 @@ class MainWindow(QMainWindow):
         self.ui.tableWidget.horizontalHeader().sectionDoubleClicked.connect(self.edit_header)
         self.ui.tableWidget.verticalHeader().sectionDoubleClicked.connect(self.edit_header)
 
-        self.setWindowTitle("Tomas Saati")
+        self.setWindowTitle("Мастер анализа иерархий")
         self.ui.result_button.clicked.connect(self.result)
         self.ui.clear_button.clicked.connect(self.nulify_cells)
 
