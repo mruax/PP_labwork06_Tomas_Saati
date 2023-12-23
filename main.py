@@ -126,6 +126,7 @@ class MainWindow(QMainWindow):
                     s += a
                     row_summ += a
             summs.append(row_summ)
+            print(f"Строка {i}. Сумма = {row_summ}")  # TODO: check readme
         result = Decimal(0)  # Итоговая сумма
         for i in range(n - 1):  # Сумма значений критериев
             row_summ = decimize(str(summs[i] / s))
